@@ -72,6 +72,9 @@
     <h1>Sorteador de Jogadas Flag Football</h1>
     
     <div class="result-box">
+        <div class="result-title">SUA POSIÇÃO:</div>
+        <div id="posicao-result" class="result-value">---</div>
+        
         <div class="result-title">ALINHAMENTO:</div>
         <div id="alinhamento-result" class="result-value">---</div>
         
@@ -90,6 +93,7 @@
 
 <script>
     // 1. AS SUAS LISTAS DE DADOS
+    const posicao = ["ID FRACO","ID FORTE","OD FRACO", "OD FORTE", "BLITZ"];
     const alinhamentos = ["PIPA", "PRESS", "BAIT"];
     const lado = ["FORTE", "FRACO", "MEIO"]; 
     const blitz = ["0", "VERMELHO", "SEGUNDO", "OPOSTO"];
@@ -108,11 +112,13 @@
 
     // 3. FUNÇÃO PRINCIPAL QUE RODA QUANDO O BOTÃO É CLICADO
     function sortearCombinacao() {
+        const posicaosorteada = sortear(posicao);
         const alinhamentoSorteado = sortear(alinhamentos);
         const ladoSorteado = sortear(lado);
         const blitzSorteada = sortear(blitz);
         const jogadaSorteada = sortear(jogadas);
 
+        document.getElementById('posicao-result').textContent = posicaosorteada;
         document.getElementById('alinhamento-result').textContent = alinhamentoSorteado;
         document.getElementById('lado-result').textContent = ladoSorteado;
         document.getElementById('blitz-result').textContent = blitzSorteada;
