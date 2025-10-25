@@ -5,37 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorteador de Jogadas Flag Football</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
+        /* ... Seu CSS completo aqui ... */
+    </style>
+    
+    <script>
+        // 1. AS SUAS LISTAS DE DADOS
+        const alinhamentos = ["PIPA", "PRESS", "BAIT"];
+        const lado = ["FORTE", "FRACO", "MEIO"]; // Já corrigido
+        const blitz = ["0", "VERMELHO", "SEGUNDO", "OPOSTO"];
+        const jogadas = [
+            "BOLT", "BOLTX", "PARAGUAI", "SUL", "NORTE", "LESTE", "OESTE", 
+            "SUL ROTAÇÃO", "NORTE ROTAÇÃO", "XBOX", "PLAYSTATION", "NINTENDO", 
+            "DUREX", "MICO", "PIKACHU", "PIKATENDO", "MARTELO", "ALICATE", 
+            "PREGO", "KAMIKAZE"
+        ];
+
+        // 2. FUNÇÃO DE SORTEIO GENÉRICA
+        function sortear(lista) {
+            const indiceAleatorio = Math.floor(Math.random() * lista.length);
+            return lista[indiceAleatorio];
         }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
+
+        // 3. FUNÇÃO PRINCIPAL QUE RODA QUANDO O BOTÃO É CLICADO
+        function sortearCombinacao() {
+            const alinhamentoSorteado = sortear(alinhamentos);
+            const ladoSorteado = sortear(lado);
+            const blitzSorteada = sortear(blitz);
+            const jogadaSorteada = sortear(jogadas);
+
+            document.getElementById('alinhamento-result').textContent = alinhamentoSorteado;
+            document.getElementById('lado-result').textContent = ladoSorteado;
+            document.getElementById('blitz-result').textContent = blitzSorteada;
+            document.getElementById('jogada-result').textContent = jogadaSorteada;
         }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .result-box {
-            margin: 20px 0;
-            padding: 15px;
-            border: 2px solid #3498db;
-            border-radius: 8px;
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-        .result
+        
+        // Roda o sorteio na primeira vez que a página carrega
+        // (Isso deve ser chamado *depois* que os elementos existirem, então vamos remover daqui)
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sorteador de Jogadas Flag Football</h1>
+    
+    <div class="result-box">
+        <div class="result-title">ALINHAMENTO:</div>
+        <div id="alinhamento-result" class="result-value">---</div>
+        
+        <div class="result-title">LADO BLITZ:</div>
+        <div id="lado-result" class="result-value">---</div>
+        
+        <div class="result-title">BLITZ:</div>
+        <div id="blitz-result" class="result-value">---</div>
+        
+        <div class="result-title">JOGADA:</div>
+        <div id="jogada-result" class="result-value">---</div>
+    </div>
+    
+    <button onclick="sortearCombinacao()">SORTEAR NOVO COMBO</button>
+</div>
+
+<script>
+    // Agora, as funções já estão definidas, e os elementos existem.
+    document.addEventListener('DOMContentLoaded', sortearCombinacao); 
+    // OU simplesmente: sortearCombinacao();
+</script>
+
+</body>
+</html>
